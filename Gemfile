@@ -26,7 +26,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'guard-spork',          '1.2.0'
   gem 'spork',                '0.9.2'
-  gem 'rb-inotify',           '0.8.8'
+  gem 'rb-inotify',           '~>0.9'
   gem 'libnotify',            '0.5.9'
 end
 
