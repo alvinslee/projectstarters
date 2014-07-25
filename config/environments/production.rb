@@ -11,11 +11,13 @@ MyRailsApp::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
+  config.eager_load = true
+
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -43,13 +45,33 @@ MyRailsApp::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
+  # config.action_controller.asset_host = "https://???"
+  # config.action_mailer.asset_host = "https://???"
+
+  config.action_mailer.raise_delivery_errors = true
+  # Set mailer to log with a WARN level (logs warnings, errors, and fatals)
+  mail_logger = Logger.new(Rails.root.join('log','production.mail.log'))
+  mail_logger.level = Logger::WARN
+  config.action_mailer.logger = mail_logger
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address                           => "???",
+    :port                              => 587,
+    :domain                            => "???",
+    :user_name                         => "???",
+    :password                          => "???",
+    :authentication                    => "plain",
+    :enable_starttls_auto              => true
+  }
+
+  config.action_controller.default_url_options = { :protocol => 'https://' }
 
   # Enable threaded mode
   # config.threadsafe!
