@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Superconf
+module MyRailsApp
   class Application < Rails::Application
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
